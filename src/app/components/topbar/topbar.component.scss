@@ -1,0 +1,17 @@
+@import '../../../styles.scss';
+
+:host {
+    width: 1024px;
+}
+
+li {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.logo-text {
+    &:hover {
+        cursor: pointer;
+    }
+}

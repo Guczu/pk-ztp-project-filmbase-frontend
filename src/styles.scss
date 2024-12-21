@@ -1,1 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$filmbase-primary: mat.define-palette((50: #FFE1EC, // Jasny różowy
+            100: #FFB3D1,
+            200: #FF80B6,
+            300: #FF4D9A,
+            400: #FF3388,
+            500: #FF55A5, // Zmieniony kolor primary
+            600: #FF1A7E,
+            700: #E6005C,
+            800: #D2004C,
+            900: #B8003F,
+            contrast: (500: #FFFFFF),
+        ));
+
+$filmbase-accent: mat.define-palette((50: #48484F, // Jaśniejszy odcień niż accent-500
+            100: #3A3A42,
+            200: #313136,
+            300: #29292F,
+            400: #222227,
+            500: #2B2B31, // Nowy kolor accent-500
+            600: #23232A,
+            700: #1C1C22,
+            800: #141418,
+            900: #0D0D10,
+            contrast: (500: #FFFFFF),
+        ));
+
+$filmbase-warn: mat.define-palette((50: #FFD1D8,
+            100: #FFB3B8,
+            200: #FF8A8E,
+            300: #FF666F,
+            400: #FF4D5C,
+            500: #FF5860, // Zmieniony kolor warn
+            600: #FF4C54,
+            700: #FF3F47,
+            800: #FF3141,
+            900: #FF1F2E,
+            contrast: (500: #FFFFFF),
+        ));
+
+$filmbase-theme: mat.define-light-theme((color: (primary: $filmbase-primary,
+                accent: $filmbase-accent,
+                warn: $filmbase-warn,
+            ),
+            typography: mat.define-typography-config($font-family: 'Ubuntu, sans-serif'),
+        ));
+
+@include mat.all-component-themes($filmbase-theme);
+
+body {
+    background-color: mat.get-color-from-palette($filmbase-accent, 500);
+    color: mat.get-color-from-palette($filmbase-primary, 500);
+}
+
+h1,
+h2,
+h3 {
+    color: #FFFFFF;
+}
+
+.rating-star {
+    color: #E52D45;
+}
+
+.gradient-button {
+    background: linear-gradient(to right,
+            mat.get-color-from-palette($filmbase-primary, 400),
+            mat.get-color-from-palette($filmbase-warn, 500));
+    padding: 20px 30px;
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.4rem;
+    box-shadow: 0 0 20px 0 rgba(255, 88, 96, 0.5);
+}
+
+.gradient-text {
+    background: linear-gradient(to right,
+            mat.get-color-from-palette($filmbase-primary, 400),
+            mat.get-color-from-palette($filmbase-warn, 500));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.logo-text {
+    font-size: 3.5rem;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
