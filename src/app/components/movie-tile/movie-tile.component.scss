@@ -1,0 +1,14 @@
+.movie-poster {
+    width: 210px;
+    height: 300px;
+    border-radius: 8px;
+
+    img {
+        border-radius: 8px;
+        object-fit: cover;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
