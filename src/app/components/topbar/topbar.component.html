@@ -1,8 +1,6 @@
 <section class="text-white flex justify-between items-center py-5 gap-16 bg-accent-500">
     <!-- LOGO -->
-    <h1 class="logo-text" routerLink="/">
-        FLIX<span class="gradient-text font-bold">GO</span>
-    </h1>
+    <app-logo></app-logo>
 
     <!-- MENU -->
     <ul class="flex gap-12">
@@ -17,6 +15,6 @@
         <mat-icon fontIcon="search"></mat-icon>
 
         <!-- REGISTER BUTTON -->
-        <button mat-flat-button class="gradient-button">SIGN IN</button>
+        <button mat-flat-button class="gradient-button" routerLink="/register">SIGN IN</button>
     </div>
 </section>

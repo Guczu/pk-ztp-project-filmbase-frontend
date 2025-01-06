@@ -1,0 +1,36 @@
+<section class="w-screen h-screen flex flex-col justify-center items-center gap-[24px]">
+    <app-logo [asLink]="false" [cursorPointer]="false" [fontSize]="'7rem'"></app-logo>
+
+    <form class="flex flex-col gap-[8px]">
+
+        <mat-form-field class="form-input">
+            <input type="username" matInput [formControl]="username" placeholder="Username">
+            @if (username.hasError('required')) {
+            <mat-error>Username is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="form-input">
+            <input type="email" matInput [formControl]="email" placeholder="E-mail">
+            @if (email.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="password" matInput [formControl]="password" placeholder="Password">
+            @if (password.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="password" matInput [formControl]="confirmPassword" placeholder="Confirm password">
+            @if (confirmPassword.hasError('required')) {
+            <mat-error>Confirm Password is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <button mat-flat-button class="gradient-button">SIGN IN</button>
+    </form>
+</section>

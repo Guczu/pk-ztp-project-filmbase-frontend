@@ -11,6 +11,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { RecommendedMoviesComponent } from './pages/recommended-movies/recommended-movies.component';
 import { MovieTileComponent } from './components/movie-tile/movie-tile.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,13 +26,20 @@ import { FooterComponent } from './components/footer/footer.component';
     RecommendedMoviesComponent,
     MovieTileComponent,
     FooterComponent,
+    RegisterComponent,
+    LogoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
