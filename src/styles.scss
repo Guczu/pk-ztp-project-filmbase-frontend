@@ -3,12 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-$filmbase-primary: mat.define-palette((50: #FFE1EC, // Jasny różowy
+$filmbase-primary: mat.define-palette((50: #FFE1EC,
             100: #FFB3D1,
             200: #FF80B6,
             300: #FF4D9A,
             400: #FF3388,
-            500: #FF55A5, // Zmieniony kolor primary
+            500: #FF55A5,
             600: #FF1A7E,
             700: #E6005C,
             800: #D2004C,
@@ -16,12 +16,12 @@ $filmbase-primary: mat.define-palette((50: #FFE1EC, // Jasny różowy
             contrast: (500: #FFFFFF),
         ));
 
-$filmbase-accent: mat.define-palette((50: #48484F, // Jaśniejszy odcień niż accent-500
+$filmbase-accent: mat.define-palette((50: #48484F,
             100: #3A3A42,
             200: #313136,
             300: #29292F,
             400: #222227,
-            500: #2B2B31, // Nowy kolor accent-500
+            500: #2B2B31,
             600: #23232A,
             700: #1C1C22,
             800: #141418,
@@ -34,7 +34,7 @@ $filmbase-warn: mat.define-palette((50: #FFD1D8,
             200: #FF8A8E,
             300: #FF666F,
             400: #FF4D5C,
-            500: #FF5860, // Zmieniony kolor warn
+            500: #FF5860,
             600: #FF4C54,
             700: #FF3F47,
             800: #FF3141,
@@ -84,6 +84,10 @@ h3 {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+.card-shadow {
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.2);
 }
 
 .logo-text {
