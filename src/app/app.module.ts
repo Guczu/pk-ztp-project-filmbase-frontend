@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormCardComponent } from './components/form-card/form-card.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormCardComponent } from './components/form-card/form-card.component';
     RegisterComponent,
     LogoComponent,
     FormCardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@
         <app-logo [asLink]="false" [cursorPointer]="false" [fontSize]="'5rem'"></app-logo>
 
         <form [formGroup]="registerForm" class="flex flex-col gap-[8px]" (ngSubmit)="onSubmit()">
-            <mat-form-field class="form-input">
+            <mat-form-field class="w-[280px]">
                 <input matInput formControlName="username" placeholder="Username" maxlength="10">
                 <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
                     Username is <strong>required</strong>
