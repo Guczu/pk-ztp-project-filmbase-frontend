@@ -1,0 +1,33 @@
+<section class="container flex flex-col gap-16">
+
+    <app-section-header>
+        <span class="font-bold">MOVIE CATALOG</span>
+    </app-section-header>
+
+    <div class="flex flex-wrap gap-16 items-center justify-center">
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+        <app-movie-tile [size]="'small'"></app-movie-tile>
+    </div>
+
+    <div class="flex justify-between">
+        <span class="font-bold text-white">Page: {{ page }}</span>
+
+        <div class="flex gap-8">
+            <button mat-flat-button class="gradient-button float-start" *ngIf="page > 1" (click)="previousPaginationPage()">
+                PREVIOUS PAGE
+            </button>
+        
+            <button mat-flat-button class="gradient-button float-end" (click)="nextPaginationPage()">
+                NEXT PAGE
+            </button>
+        </div>
+    </div>
+</section>

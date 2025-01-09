@@ -19,6 +19,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormCardComponent } from './components/form-card/form-card.component';
 import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './layouts/layout/layout.component';
+import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { LoginComponent } from './pages/login/login.component';
     LogoComponent,
     FormCardComponent,
     LoginComponent,
+    LayoutComponent,
+    MovieCatalogComponent,
+    SectionHeaderComponent,
   ],
   imports: [
     BrowserModule,

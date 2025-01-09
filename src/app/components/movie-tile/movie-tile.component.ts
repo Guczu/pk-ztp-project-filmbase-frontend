@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-movie-tile',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './movie-tile.component.scss'
 })
 export class MovieTileComponent {
-
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
 }
