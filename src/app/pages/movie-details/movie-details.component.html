@@ -1,0 +1,54 @@
+<section class="flex flex-col gap-16">
+    <div class="flex justify-between bg-accent-300 card-shadow p-12">
+        <img src="https://rukminim2.flixcart.com/image/850/1000/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=20&crop=false"
+            alt="movie tile poster">
+
+        <div class="flex flex-col w-full items-center justify-between">
+            <div class="flex flex-col gap-6 items-center">
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Title</app-section-header>
+                    <span>Movie</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Genre</app-section-header>
+                    <span>Action</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Description</app-section-header>
+                    <span>Description</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Rating</app-section-header>
+                    <div class="flex justify-center items-center gap-4">
+                        <mat-icon fontIcon="star_icon"></mat-icon>
+                        <span class="text-white">8.4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2 items-center">
+                <app-section-header>Your rate</app-section-header>
+                <div class="flex justify-center gap-4">
+                    <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <mat-icon 
+                          class="hover:cursor-pointer" 
+                          (click)="changeUsersRate(star)"
+                          [fontIcon]="i < userRating ? 'star_icon' : 'star_outline'">
+                        </mat-icon>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-accent-300 card-shadow p-12 flex flex-col gap-8">
+        <app-section-header>
+            <span>Comments</span>
+        </app-section-header>
+
+        <span>This movie has no comments available.</span>
+    </div>
+</section>

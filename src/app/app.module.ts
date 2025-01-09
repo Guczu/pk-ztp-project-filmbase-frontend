@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SectionHeaderComponent } from './components/section-header/section-head
     LayoutComponent,
     MovieCatalogComponent,
     SectionHeaderComponent,
+    MovieDetailsComponent,
   ],
   imports: [
     BrowserModule,
