@@ -23,6 +23,7 @@ import { LayoutComponent } from './layouts/layout/layout.component';
 import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,9 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
