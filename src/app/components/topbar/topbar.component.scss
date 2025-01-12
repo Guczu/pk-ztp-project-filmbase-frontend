@@ -1,7 +1,8 @@
+@use '@angular/material' as mat;
 @import '../../../styles.scss';
 
 :host {
-    width: 1024px;
+    width: inherit;
 }
 
 li {
@@ -14,4 +15,13 @@ li {
     &:hover {
         cursor: pointer;
     }
+}
+
+::ng-deep .topbar-menu {
+    background-color: mat.get-color-from-palette($filmbase-accent, 500) !important;
+}
+
+.mat-mdc-menu-item {
+    color: white !important;
+    padding: 0 30px;
 }

@@ -1,13 +1,27 @@
-<section class="text-white flex justify-between items-center py-5 gap-16 bg-accent-500">
+<section class="container text-white flex justify-between items-center p-8 gap-16 bg-accent-500">
 
     <app-logo></app-logo>
 
-    <ul class="flex gap-12">
+    <ul class="gap-12 hidden sm:d sm:flex">
         <li routerLink="/">Home</li>
         <li routerLink="/catalog">Catalog</li>
-        <li routerLink="/">Pricing Plan</li>
         <li routerLink="/">Help</li>
     </ul>
 
-    <button mat-flat-button class="gradient-button" routerLink="/login">SIGN IN</button>
+    <mat-menu #menu="matMenu" yPosition="below" class="topbar-menu">
+        <button mat-menu-item routerLink="/">Home</button>
+        <button mat-menu-item routerLink="/catalog">Catalog</button>
+        <button mat-menu-item routerLink="/">Help</button>
+    </mat-menu>
+
+    <div class="flex gap-6 justify-center items-center">
+        <button 
+            mat-icon-button 
+            [matMenuTriggerFor]="menu" 
+            class="sm:hidden">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-flat-button class="gradient-button" routerLink="/login">SIGN IN</button>
+    </div>
+
 </section>

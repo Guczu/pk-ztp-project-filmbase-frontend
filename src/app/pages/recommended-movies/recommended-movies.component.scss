@@ -1,5 +1,9 @@
 @import '../../../styles.scss';
 
+:host {
+    width: inherit;
+}
+
 .slider-pagination-button {
     display: flex;
     justify-content: center;

@@ -1,0 +1,24 @@
+@tailwind utilities;
+$lowerByValue: 50px;
+
+@layer utilities {
+    .page-content {
+      width: 100%;
+  
+      @media (min-width: theme('screens.sm')) {
+        width: calc(theme('screens.sm') - $lowerByValue);
+      }
+  
+      @media (min-width: theme('screens.md')) {
+        width: calc(theme('screens.md') - $lowerByValue);
+      }
+  
+      @media (min-width: theme('screens.lg')) {
+        width: calc(theme('screens.lg') - $lowerByValue);
+      }
+  
+      @media (min-width: theme('screens.xl')) {
+        width: calc(theme('screens.xl') - $lowerByValue);
+      }
+    }
+}

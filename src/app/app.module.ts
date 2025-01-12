@@ -15,6 +15,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormCardComponent } from './components/form-card/form-card.component';
@@ -51,6 +52,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
