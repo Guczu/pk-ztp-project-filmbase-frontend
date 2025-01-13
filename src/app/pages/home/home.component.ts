@@ -16,20 +16,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     private api: ApiService,
   ) {}
 
-  async ngOnInit() {
-    await this.fetchData();
+  ngOnInit() {
+    this.fetchMovies();
   }
 
-  async fetchData() {
+  async fetchMovies() {
     this.subscription.add(this.api.getMovies().subscribe({
-      next: (movies) => console.log(movies.data.content),
+      next: (movies) => this.movies.set(movies.data.content),
       error: (err) => console.error(err),
     }));
 
-    this.subscription.add(this.api.getMovie(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.getMovie(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
 
     // this.api.register('gochu2', '1234567').subscribe({
     //   next: (movie) => console.log(movie.data),
@@ -56,10 +56,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   error: (err) => console.error(err),
     // }));
 
-    this.subscription.add(this.api.getComments(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.getComments(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
 
     // this.subscription.add(this.api.deleteComment(2).subscribe({
     //   next: (movie) => console.log(movie.data),
@@ -71,25 +71,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   error: (err) => console.error(err),
     // }));
 
-    this.subscription.add(this.api.getMovieRateCount(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.getMovieRateCount(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
 
-    this.subscription.add(this.api.getMovieRateAverage(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.getMovieRateAverage(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
 
-    this.subscription.add(this.api.getMovieRate(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.getMovieRate(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
     
-    this.subscription.add(this.api.deleteMovieRate(4).subscribe({
-      next: (movie) => console.log(movie.data),
-      error: (err) => console.error(err),
-    }));
+    // this.subscription.add(this.api.deleteMovieRate(4).subscribe({
+    //   next: (movie) => console.log(movie.data),
+    //   error: (err) => console.error(err),
+    // }));
   }
 
   ngOnDestroy() {

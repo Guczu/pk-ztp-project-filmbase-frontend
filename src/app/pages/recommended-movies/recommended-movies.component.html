@@ -6,10 +6,14 @@
     </app-section-header>
 
     <div class="flex gap-16 flex-wrap justify-center">
-        <app-movie-tile></app-movie-tile>
-        <app-movie-tile></app-movie-tile>
-        <app-movie-tile></app-movie-tile>
-        <app-movie-tile></app-movie-tile>
+        @for(movie of movies(); track movie) {
+            <app-movie-tile 
+                [movieId]="movie.id" 
+                [title]="movie.title" 
+                [genre]="movie.genre" 
+                [imageUrl]="movie.imageUrl"
+            ></app-movie-tile>
+        }
     </div>
 
     <div class="w-full flex justify-center mt-12">

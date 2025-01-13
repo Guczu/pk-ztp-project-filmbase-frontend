@@ -1,3 +1,12 @@
+export type Genre = 'DRAMA' | 'ACTION' | 'SCIENCE_FICTION' | 'THRILLER';
+
+export enum FilmGenre {
+    DRAMA = 'Drama',
+    ACTION = 'Action',
+    SCIENCE_FICTION = 'Science Fiction',
+    THRILLER = 'Thriller',
+}
+
 export type Film = {
     id: number;
     title: string;
@@ -5,7 +14,7 @@ export type Film = {
     description: string;
     releaseDate: string;
     imageUrl: string;
-    genre: string;
+    genre: Genre;
 }
 
 export type Pagination = {

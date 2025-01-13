@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Film } from '../types/Films';
-import { ApiResponse, PagedApiResponse } from '../types/General';
+import { ApiResponse, PagedApiResponse, PaginationParams } from '../types/General';
 import { Auth } from '../types/Auth';
 import { Rating } from '../types/Rate';
 
@@ -32,12 +32,12 @@ export class ApiService {
     return this.http.post<PagedApiResponse<Auth>>(`/api/auth/token`, { userId, accessToken, refreshToken })
   }
 
-  getMovies(): Observable<PagedApiResponse<Film[]>> {
-    return this.http.get<PagedApiResponse<Film[]>>(`/api/films`);
+  getMovies(paginationParams?: HttpParams): Observable<PagedApiResponse<Film[]>> {
+    return this.http.get<PagedApiResponse<Film[]>>(`/api/films`, { params: paginationParams });
   }
 
-  getMovie(filmId: number): Observable<PagedApiResponse<Film>> {
-    return this.http.get<PagedApiResponse<Film>>(`/api/films/film/${filmId}`);
+  getMovie(filmId: number): Observable<ApiResponse<Film>> {
+    return this.http.get<ApiResponse<Film>>(`/api/films/film/${filmId}`);
   }
 
   addMovieComment(comment: string, filmId: number): Observable<ApiResponse<Comment>> {
@@ -64,8 +64,8 @@ export class ApiService {
     return this.http.get<ApiResponse<number>>(`/api/rates/rate/average/film/${filmId}`);
   }
 
-  getMovieRate(filmId: number): Observable<PagedApiResponse<Rating>> {
-    return this.http.get<PagedApiResponse<Rating>>(`/api/rates/film/${filmId}`);
+  getMovieRate(filmId: number): Observable<PagedApiResponse<Rating[]>> {
+    return this.http.get<PagedApiResponse<Rating[]>>(`/api/rates/film/${filmId}`);
   }
 
   deleteMovieRate(rateId: number): Observable<ApiResponse<null>> {

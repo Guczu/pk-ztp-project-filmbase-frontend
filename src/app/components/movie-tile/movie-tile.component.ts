@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class MovieTileComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
+  @Input() title = '';
+  @Input() genre = '';
+  @Input() imageUrl = '';
+  @Input() movieId?: number;
 }

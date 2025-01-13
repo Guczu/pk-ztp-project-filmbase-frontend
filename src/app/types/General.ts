@@ -12,3 +12,10 @@ export interface PagedApiResponse<T> {
       page: Pagination;
     };
 }
+
+export interface PaginationParams {
+  'page-number': number;
+  'page-size': number;
+  'sort-direction': 'ASC' | 'DESC';
+  genre?: string;
+}

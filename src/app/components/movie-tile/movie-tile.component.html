@@ -1,11 +1,10 @@
-<div class="movie-tile flex flex-col gap-6 hover:cursor-pointer" [ngClass]="size" routerLink="/movie/123">
+<div class="movie-tile flex flex-col gap-6 hover:cursor-pointer" [ngClass]="size" [routerLink]="['/movie', movieId]">
   <div class="movie-poster">
-    <img src="https://rukminim2.flixcart.com/image/850/1000/jf8khow0/poster/a/u/h/small-hollywood-movie-poster-blade-runner-2049-ridley-scott-original-imaf3qvx88xenydd.jpeg?q=20&crop=false"
-         alt="movie tile poster">
+    <img [src]="imageUrl" alt="movie tile poster">
   </div>
 
   <div class="flex flex-col gap-2 pl-4">
-    <span class="title text-white font-bold">The Edge of Tomorrow</span>
-    <span class="genre">Action, Sci-Fi</span>
+    <span class="title text-white font-bold">{{ title }}</span>
+    <span class="genre">{{ genre }}</span>
   </div>
 </div>

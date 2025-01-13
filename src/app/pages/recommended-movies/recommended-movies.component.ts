@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Film } from '../../types/Films';
 
 @Component({
   selector: 'app-recommended-movies',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './recommended-movies.component.scss'
 })
 export class RecommendedMoviesComponent {
-
+  movies = input<Film[]>();
+  moviesChange = output<Film[]>();
 }
