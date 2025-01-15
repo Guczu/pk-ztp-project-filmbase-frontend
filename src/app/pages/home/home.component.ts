@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Film } from '../../types/Films';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private api: ApiService,
+    private auth: AuthService,
   ) {}
 
   ngOnInit() {
@@ -35,14 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   next: (movie) => console.log(movie.data),
     //   error: (err) => console.error(err),
     // });
-
-    this.subscription.add(this.api.login('gochu2', '1234567').subscribe({
-      next: (auth) => {
-        console.log('login',auth.data.accessToken);
-        localStorage.setItem('authToken', auth.data.accessToken);
-      },
-      error: (err) => console.error(err),
-    }));
+    // this.auth.login('gochu2', '1234567');
     
     setTimeout(()=>{},1000)
 

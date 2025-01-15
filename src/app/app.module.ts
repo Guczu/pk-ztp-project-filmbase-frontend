@@ -24,7 +24,8 @@ import { LayoutComponent } from './layouts/layout/layout.component';
 import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,10 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi())],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

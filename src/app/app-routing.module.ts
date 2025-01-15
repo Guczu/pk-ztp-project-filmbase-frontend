@@ -6,6 +6,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { authGuard } from './guards/auth.guard';
+import { loggedGuard } from './guards/logged.guard';
 
 const routes: Routes = [
   {
@@ -20,8 +22,8 @@ const routes: Routes = [
       { path: 'movie/:id', component: MovieDetailsComponent },
     ],
   },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [loggedGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [loggedGuard] },
   { path: '**', redirectTo: 'home' },
 ];
 

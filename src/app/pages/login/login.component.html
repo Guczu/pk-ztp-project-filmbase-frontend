@@ -17,6 +17,10 @@
                 </mat-error>
             </mat-form-field>
 
+            <mat-error *ngIf="loginError">
+                Something went wrong!
+            </mat-error>
+
             <button mat-flat-button class="gradient-button" [disabled]="loginForm.invalid">SIGN IN</button>
         </form>
 

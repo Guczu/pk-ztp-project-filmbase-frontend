@@ -21,7 +21,16 @@
             class="sm:hidden">
             <mat-icon>menu</mat-icon>
         </button>
-        <button mat-flat-button class="gradient-button" routerLink="/login">SIGN IN</button>
+        @if (!auth.isLoggedIn()) {
+            <button mat-flat-button class="gradient-button" routerLink="/login">
+                SIGN IN
+            </button>
+        }
+        @if (auth.isLoggedIn()) {
+            <button mat-flat-button class="gradient-button" (click)="auth.logout()">
+                LOGOUT
+            </button>
+        }
     </div>
 
 </section>

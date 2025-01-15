@@ -1,10 +1,11 @@
-export type Genre = 'DRAMA' | 'ACTION' | 'SCIENCE_FICTION' | 'THRILLER';
+export type Genre = 'DRAMA' | 'ACTION' | 'SCIENCE_FICTION' | 'THRILLER' | 'UNKNOWN';
 
 export enum FilmGenre {
     DRAMA = 'Drama',
     ACTION = 'Action',
     SCIENCE_FICTION = 'Science Fiction',
     THRILLER = 'Thriller',
+    UNKNOWN = 'Unknown',
 }
 
 export type Film = {
