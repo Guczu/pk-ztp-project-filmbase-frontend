@@ -1,27 +1,55 @@
-# PkZtpFilmbaseFrontend
+# Filmbase Application 🎞️
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+Projekt semestralny przygotowany na kurs "Zaawansowane Techniki Programowania".
 
-## Development server
+## Zespół projektowy
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Krzysztof Radzięta** - Backend
+- **Daniel Warzecha** - Backend
+- **Maksymilian Patoń** - Frontend
+- **Jakub Goch** - Frontend
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Opis projektu
 
-## Build
+### Główne funkcjonalności:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Rejestracja i logowanie**
+2. **Przeglądanie filmów**
+3. **Ocenianie filmów**
+4. **Dodawanie komentarzy**
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Instrukcja uruchomienia
 
-## Running end-to-end tests
+### Wymagania wstępne
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Node v22.11.0 lub inny kompatybilny z Angularem 18
+- Angular 18.2.13
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Uruchomienie aplikacji
+
+- Dla samej aplikacji frontend komenda 'ng serve'
+- Dla całości aplikacji uruchomienie kontenera docker
+
+### Dostęp do aplikacji
+
+- Aplikacja dostępna pod adresem `http://localhost:4200/`.
+
+## Struktura aplikacji
+
+### Backend:
+
+- **Uwierzytelnianie**: Bezstanowe JWT z obsługą refresh tokenów.
+- **Funkcje dotyczące filmów**: Ocena i komentowanie filmów.
+- **Role użytkowników**:
+  - Zwykli użytkownicy mogą oceniać i komentować filmy.
+  - Administrator zarządza filmami bezpośrednio przez SQL.
+
+### Frontend:
+
+- Stworzony do komunikacji z API backendowym w celu zapewnienia płynnej obsługi użytkowników.
