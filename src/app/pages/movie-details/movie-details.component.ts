@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Film, FilmGenre } from '../../types/Films';
 import { Rating } from '../../types/Rate';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,14 +15,15 @@ export class MovieDetailsComponent implements OnInit {
   private subscription = new Subscription;
   private routeSub = new Subscription;
   private movieId: number | null = null;
-  private movieRating = signal<Rating[]>([]);
+  private movieRating = signal<Rating | null>(null);
   movieGenre = FilmGenre;
   movie: Film | null = null;
   userRating = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private api: ApiService
+    private api: ApiService,
+    private auth: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -43,10 +45,12 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   private fetchRating(movieId: number) {
-    this.subscription.add(this.api.getMovieRate(movieId).subscribe({
+    if (!this.auth.isTokenValid()) return;
+
+    this.subscription.add(this.api.getUserMovieRate(movieId).subscribe({
       next: (rating) => {
-        this.movieRating.set(rating.data.content);
-        this.userRating = rating.data.content[0]?.grade || 0;
+        this.movieRating.set(rating.data);
+        this.userRating = rating.data.grade || 0;
       },
       error: (err) => console.error(err),
     }));
@@ -66,7 +70,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   private deleteMovieRate() {
-    const rateId = this.movieRating()[0]?.id;
+    const rating = this.movieRating();
+    if (!rating) return;
+    const rateId = rating.id;
     const movieId = this.movieId;
 
     if (!rateId || !movieId) return;

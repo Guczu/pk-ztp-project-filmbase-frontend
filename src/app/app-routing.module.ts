@@ -6,7 +6,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { MovieCatalogComponent } from './pages/movie-catalog/movie-catalog.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
-import { authGuard } from './guards/auth.guard';
 import { loggedGuard } from './guards/logged.guard';
 
 const routes: Routes = [
