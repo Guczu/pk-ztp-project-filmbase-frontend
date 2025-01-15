@@ -16,6 +16,9 @@ export class MovieDetailsComponent implements OnInit {
   private routeSub = new Subscription;
   private movieId: number | null = null;
   private movieRating = signal<Rating | null>(null);
+  
+  overallRate: number = 0;
+  overallCount: number = 0;
   movieGenre = FilmGenre;
   movie: Film | null = null;
   userRating = 0;
@@ -33,6 +36,7 @@ export class MovieDetailsComponent implements OnInit {
 
     if (this.movieId) {
       this.fetchMovie(this.movieId);
+      this.fetchOverallRating(this.movieId);
       this.fetchRating(this.movieId);
     }
   }
@@ -45,7 +49,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   private fetchRating(movieId: number) {
-    if (!this.auth.isTokenValid()) return;
+    if (!this.auth.isLoggedIn()) return;
 
     this.subscription.add(this.api.getUserMovieRate(movieId).subscribe({
       next: (rating) => {
@@ -54,6 +58,22 @@ export class MovieDetailsComponent implements OnInit {
       },
       error: (err) => console.error(err),
     }));
+  }
+
+  private fetchOverallRating(movieId: number) {
+    this.subscription.add(this.api.getMovieRateAverage(movieId).subscribe({
+      next: (rating) => {
+        this.overallRate = rating.data;
+      },
+      error: (err) => console.error(err),
+    }));
+
+    this.subscription.add(this.api.getMovieRateCount(movieId).subscribe({
+      next: (count) => {
+        this.overallCount = count.data;
+      },
+      error: (err) => console.error(err),
+    }))
   }
 
   private rateMovie(grade: number) {

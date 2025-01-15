@@ -48,11 +48,10 @@ export class MovieCatalogComponent implements OnInit, OnDestroy {
   }
 
   previousPaginationPage() {
-      this.pagination().number > 0 
-      ? this.pagination.update(p => ({ ...p, number: p.number - 1 }))
-      : this.pagination();
-
+    if (this.pagination().number > 0) {
+      this.pagination.update(p => ({ ...p, number: p.number - 1 }))
       this.fetchMovies();
+    }
   }
 
   ngOnDestroy() {

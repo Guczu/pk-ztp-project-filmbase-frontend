@@ -2,9 +2,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Film } from '../types/Films';
-import { ApiResponse, PagedApiResponse } from '../types/General';
+import { ApiResponse, PagedApiResponse, PaginationParams } from '../types/General';
 import { Auth } from '../types/Auth';
 import { Rating } from '../types/Rate';
+import { Comment } from '../types/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,8 @@ export class ApiService {
     return this.http.post<ApiResponse<Comment>>(`${this.API_URL}/comments/comment`, { comment, filmId });
   }
 
-  getComments(filmId: number): Observable<PagedApiResponse<Comment[]>> {
-    return this.http.get<PagedApiResponse<Comment[]>>(`${this.API_URL}/comments/film/${filmId}`);
+  getComments(filmId: number, paginationParams?: HttpParams): Observable<PagedApiResponse<Comment[]>> {
+    return this.http.get<PagedApiResponse<Comment[]>>(`${this.API_URL}/comments/film/${filmId}`, { params: paginationParams });
   }
 
   deleteComment(commentId: number): Observable<ApiResponse<null>> {

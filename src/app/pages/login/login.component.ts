@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  private subscription = new Subscription;
   loginForm: FormGroup;
   loginError = false;
 
@@ -23,13 +25,13 @@ export class LoginComponent {
   onSubmit() { 
     const { username, password } = this.loginForm.value;
 
-    this.auth.login(username, password).subscribe({
-      next: () => {
-        this.loginError = false;
-      },
-      error: (err) => {
-        this.loginError = true;
-      },
-    })
+    this.subscription.add(this.auth.login(username, password).subscribe({
+      next: () => this.loginError = false,
+      error: (err) => this.loginError = true,
+    }))
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -23,8 +23,9 @@
                     <app-section-header>Rating</app-section-header>
                     <div class="flex justify-center items-center gap-4">
                         <mat-icon fontIcon="star_icon"></mat-icon>
-                        <span class="text-white">8.4</span>
+                        <span class="text-white">{{ overallRate }}</span>
                     </div>
+                    <span>Reviews count: {{ overallCount }}</span>
                 </div>
             </div>
 
@@ -43,11 +44,5 @@
         </div>
     </div>
 
-    <div class="bg-accent-300 card-shadow p-12 flex flex-col gap-8">
-        <app-section-header>
-            <span>Comments</span>
-        </app-section-header>
-
-        <span>This movie has no comments available.</span>
-    </div>
+    <app-comments [movieId]="movie.id"></app-comments>
 </section>

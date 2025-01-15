@@ -26,6 +26,7 @@ import { SectionHeaderComponent } from './components/section-header/section-head
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MovieCatalogComponent,
     SectionHeaderComponent,
     MovieDetailsComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
