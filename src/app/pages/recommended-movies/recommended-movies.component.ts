@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, OnDestroy, OnInit, output, signal } from '@angular/core';
+import { Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
 import { Film } from '../../types/Films';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';

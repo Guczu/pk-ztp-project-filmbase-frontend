@@ -1,8 +1,4 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { Film } from '../../types/Films';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',

@@ -53,7 +53,6 @@ export class MovieDetailsComponent implements OnInit {
 
     this.subscription.add(this.api.getUserMovieRate(movieId).subscribe({
       next: (rating) => {
-        console.log(rating)
         this.movieRating.set(rating.data);
         this.userRating = rating.data?.grade || 0;
       },
@@ -106,14 +105,15 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   private deleteMovieRate() {
-    console.log(1, this.movieRating())
     const userRate = this.movieRating();
+
     if (!userRate) return;
+    
     const rateId = userRate.id;
     const movieId = this.movieId;
-console.log(rateId, movieId)
+
     if (!rateId || !movieId) return;
-    console.log(2)
+
     this.subscription.add(this.api.deleteMovieRate(rateId).subscribe({
       next: () => {
         this.userRating = 0;
