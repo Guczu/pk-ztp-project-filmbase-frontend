@@ -77,6 +77,9 @@
               "buildTarget": "pk-ztp-filmbase-frontend:build:development"
             }
           },
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -98,7 +101,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css", "src/styles.scss"
             ],
             "scripts": []
           }

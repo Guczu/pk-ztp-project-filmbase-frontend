@@ -1,0 +1,40 @@
+<section class="container flex flex-col gap-16">
+
+    <app-section-header class="text-center xl:text-start">
+        <span class="font-bold">MOVIE CATALOG</span>
+    </app-section-header>
+
+    @if (!isLoading()) {
+        <div class="flex flex-wrap gap-16 items-center justify-center">
+            @for (movie of movies(); track movie) {
+                <app-movie-tile 
+                    [size]="'small'"
+                    [movieId]="movie.id" 
+                    [title]="movie.title" 
+                    [genre]="movie.genre" 
+                    [imageUrl]="movie.imageUrl"
+                ></app-movie-tile>
+            }
+        </div>
+    
+        <div class="flex flex-col justify-center items-center gap-8 sm:flex-row sm:items-start sm:gap-0 sm:justify-between">
+            <span class="font-bold text-white">Page: {{ pagination().number + 1 }}</span>
+    
+            <div class="flex gap-8 justify-center sm:justify-start">
+                <button mat-flat-button class="gradient-button float-start" *ngIf="pagination().number > 0" (click)="previousPaginationPage()">
+                    PREVIOUS PAGE
+                </button>
+            
+                <button mat-flat-button class="gradient-button float-end" 
+                    *ngIf="pagination().number + 1 < pagination().totalPages" 
+                    (click)="nextPaginationPage()">
+                    NEXT PAGE
+                </button>
+            </div>
+        </div>
+    }
+
+    @else {
+        <app-loading-spinner [mode]="'PARTIAL'"></app-loading-spinner>
+    }
+</section>

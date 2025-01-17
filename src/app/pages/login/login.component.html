@@ -1,0 +1,30 @@
+<section class="w-screen h-screen flex justify-center items-center text-light-gray">
+    <app-form-card>
+        <app-logo [asLink]="false" [cursorPointer]="false" [fontSize]="'5rem'"></app-logo>
+
+        <form [formGroup]="loginForm" class="flex flex-col gap-[8px]" (ngSubmit)="onSubmit()">
+            <mat-form-field class="w-[280px]">
+                <input matInput formControlName="username" placeholder="Username" maxlength="10">
+                <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+                    Username is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="password" type="password" placeholder="Password" maxlength="30">
+                <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                    Password is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="loginError">
+                Wrong credentials!
+            </mat-error>
+
+            <button mat-flat-button class="gradient-button" [disabled]="loginForm.invalid">SIGN IN</button>
+        </form>
+
+        <span>Don't have an account? <a routerLink="/register" class="gradient-text">Sign up!</a></span>
+
+    </app-form-card>
+</section>

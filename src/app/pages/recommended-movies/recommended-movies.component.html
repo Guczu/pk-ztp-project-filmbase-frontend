@@ -1,0 +1,31 @@
+<section class="container flex flex-col gap-12">
+
+    <app-section-header class="text-center xl:text-start">
+        <span class="font-bold">FEATURED</span>
+        MOVIES
+    </app-section-header>
+
+    @if (!isLoading()) {
+        <div class="flex gap-16 flex-wrap justify-center">
+            @for(movie of movies(); track movie) {
+                <app-movie-tile 
+                    [movieId]="movie.id" 
+                    [title]="movie.title" 
+                    [genre]="movie.genre" 
+                    [imageUrl]="movie.imageUrl"
+                ></app-movie-tile>
+            }
+        </div>
+    }
+
+    @else {
+        <app-loading-spinner [mode]="'PARTIAL'"></app-loading-spinner>
+    }
+
+    <div class="w-full flex justify-center mt-12">
+        <button mat-flat-button class="gradient-button" routerLink="/catalog">
+            MORE MOVIES
+        </button>
+    </div>
+
+</section>

@@ -1,0 +1,60 @@
+<div class="bg-accent-300 card-shadow p-12 flex flex-col gap-8">
+    <app-section-header>
+        <span>Comments</span>
+    </app-section-header>
+
+    @if (auth.isLoggedIn()) {
+            <div class="flex flex-col items-center">
+                <mat-form-field class="w-[50%]">
+                    <textarea [(ngModel)]="newCommentContent"
+                        matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+    
+                <button mat-flat-button class="gradient-button" (click)="addComment()">
+                    ADD COMMENT
+                </button>
+            </div>
+    }
+
+    @if (!comments().length) {
+        <span>This movie has no comments available.</span>
+    } @else {
+        @for (item of comments(); track item) {
+            <div class="flex gap-8 items-center">
+                <span class="font-bold comment-username">{{ item.user?.username }}</span>
+                <span class="comment-date">{{ item.createdAt | date }}</span>
+                <div class="w-full">
+                    <span class="text-white">{{ item.comment }}</span>
+                </div>
+                @if (auth.userIdentificator && item.user?.id === auth.userIdentificator) {
+                    <div class="flex justify-end items-center">
+                        <button mat-icon-button (click)="deleteComment(item.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="flex flex-col justify-center items-center gap-8 sm:flex-row sm:items-start sm:gap-0 sm:justify-between">
+            <span class="font-bold text-white">Page: {{ pagination().number + 1 }}</span>
+    
+            <div class="flex gap-8 justify-center sm:justify-start">
+                <button mat-flat-button class="gradient-button float-start" 
+                    *ngIf="pagination().number > 0" (click)="previousPaginationPage()">
+                    PREVIOUS PAGE
+                </button>
+            
+                <button mat-flat-button class="gradient-button float-end" 
+                    *ngIf="pagination().number + 1 < pagination().totalPages" 
+                    (click)="nextPaginationPage()">
+                    NEXT PAGE
+                </button>
+            </div>
+        </div>
+    }
+</div>

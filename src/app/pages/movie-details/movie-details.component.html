@@ -1,0 +1,52 @@
+<section class="flex flex-col gap-16" *ngIf="movie">
+    <div class="flex bg-accent-300 card-shadow p-12 justify-center items-center flex-col gap-8 lg:justify-between lg:flex-row lg:gap-0 lg:items-start">
+        <img [src]="movie.imageUrl" alt="movie tile poster">
+
+        <div class="flex flex-col w-full items-center justify-between">
+            <div class="flex flex-col gap-6 items-center">
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Title</app-section-header>
+                    <span>{{ movie.title }}</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Genre</app-section-header>
+                    <span>{{ movieGenre[movie.genre] }}</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Description</app-section-header>
+                    <span class="text-center max-w-[400px]">{{ movie.description }}</span>
+                </div>
+    
+                <div class="flex flex-col gap-2 items-center">
+                    <app-section-header>Rating</app-section-header>
+                    <div class="flex justify-center items-center gap-4">
+                        <mat-icon fontIcon="star_icon"></mat-icon>
+                        <span class="text-white">{{ overallRate }} </span>
+                        <span>(Reviews: {{ overallCount }})</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2 items-center">
+                <app-section-header>Your rate</app-section-header>
+                <div class="flex justify-center gap-4">
+                    <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <mat-icon 
+                          class="hover:cursor-pointer" 
+                          (click)="changeUsersRate(star)"
+                          [fontIcon]="i < userRating ? 'star_icon' : 'star_outline'">
+                        </mat-icon>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-comments [movieId]="movie.id"></app-comments>
+
+    @if (!movie) {
+        <app-loading-spinner [mode]="'FULL'"></app-loading-spinner>
+    }
+</section>
