@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, effect, OnDestroy, OnInit, signal } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Film, Pagination } from '../../types/Films';
 import { ApiService } from '../../services/api.service';
@@ -11,6 +11,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class MovieCatalogComponent implements OnInit, OnDestroy {
   private subscription = new Subscription;
+  isLoading = signal<boolean>(false);
   movies = signal<Film[]>([]);
   pagination = signal<Pagination>({
     number: 0,
@@ -21,7 +22,11 @@ export class MovieCatalogComponent implements OnInit, OnDestroy {
 
   constructor(
     private api: ApiService,
-  ) { }
+  ) {
+    effect(() => {
+      this.isLoading.set(this.movies().length < 1);
+    }, { allowSignalWrites: true })
+  }
 
   ngOnInit() {
     this.fetchMovies();

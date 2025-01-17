@@ -53,8 +53,9 @@ export class MovieDetailsComponent implements OnInit {
 
     this.subscription.add(this.api.getUserMovieRate(movieId).subscribe({
       next: (rating) => {
+        console.log(rating)
         this.movieRating.set(rating.data);
-        this.userRating = rating.data.grade || 0;
+        this.userRating = rating.data?.grade || 0;
       },
       error: (err) => console.error(err),
     }));
@@ -63,7 +64,7 @@ export class MovieDetailsComponent implements OnInit {
   private fetchOverallRating(movieId: number) {
     this.subscription.add(this.api.getMovieRateAverage(movieId).subscribe({
       next: (rating) => {
-        this.overallRate = rating.data;
+        this.overallRate = Math.floor(rating.data * 100) / 100;
       },
       error: (err) => console.error(err),
     }));
@@ -84,23 +85,40 @@ export class MovieDetailsComponent implements OnInit {
       next: (rating) => {
         this.userRating = rating.data.grade;
         this.fetchRating(movieId);
+        this.fetchOverallRating(movieId);
+      },
+      error: (err) => console.error(err),
+    }));
+  }
+
+  private updateUserRate(grade: number) {
+    const movieId = this.movieId;
+    const userRate = this.movieRating()?.id;
+    if (!movieId || !userRate) return;
+
+    this.subscription.add(this.api.updateMovieRate(movieId, userRate, grade).subscribe({
+      next: () => {
+        this.userRating = grade
+        this.fetchOverallRating(movieId);
       },
       error: (err) => console.error(err),
     }));
   }
 
   private deleteMovieRate() {
-    const rating = this.movieRating();
-    if (!rating) return;
-    const rateId = rating.id;
+    console.log(1, this.movieRating())
+    const userRate = this.movieRating();
+    if (!userRate) return;
+    const rateId = userRate.id;
     const movieId = this.movieId;
-
+console.log(rateId, movieId)
     if (!rateId || !movieId) return;
-
+    console.log(2)
     this.subscription.add(this.api.deleteMovieRate(rateId).subscribe({
       next: () => {
         this.userRating = 0;
         this.fetchRating(movieId);
+        this.fetchOverallRating(movieId);
       },
       error: (err) => console.error(err),
     }));
@@ -111,14 +129,15 @@ export class MovieDetailsComponent implements OnInit {
 
     if (this.userRating === rate) {
       this.deleteMovieRate();
-      this.userRating = 0;
-    } else {
-      this.deleteMovieRate();
-      this.rateMovie(rate);
-      this.userRating = rate;
+      return;
     }
 
-    this.fetchRating(this.movieId);
+    if (this.userRating) {
+      this.updateUserRate(rate);
+      return;
+    } 
+      
+    this.rateMovie(rate);
   }
 
   ngOnDestroy() {

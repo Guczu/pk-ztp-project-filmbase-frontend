@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './api.service';
@@ -79,13 +78,9 @@ export class AuthService {
     return localStorage.getItem(this.accessTokenKey);
   }
 
-  private getUserId(): number | null {
+  get userIdentificator(): number | null {
     const userId = localStorage.getItem(this.userId);
     if (!userId) return null;
     return parseInt(userId);
-  }
-
-  private getRefreshToken(): string | null {
-    return localStorage.getItem(this.refreshTokenKey);
   }
 }
