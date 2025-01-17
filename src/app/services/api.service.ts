@@ -25,10 +25,6 @@ export class ApiService {
     return this.http.post<PagedApiResponse<Auth>>(`${this.API_URL}/auth/register`, { username, password })
   }
 
-  refreshToken(userId: number, accessToken: string, refreshToken: string): Observable<ApiResponse<Auth>> {
-    return this.http.post<ApiResponse<Auth>>(`${this.API_URL}/auth/token`, { userId, accessToken, refreshToken })
-  }
-
   getMovies(paginationParams?: HttpParams): Observable<PagedApiResponse<Film[]>> {
     return this.http.get<PagedApiResponse<Film[]>>(`${this.API_URL}/films`, { params: paginationParams });
   }
@@ -71,5 +67,9 @@ export class ApiService {
 
   deleteMovieRate(rateId: number): Observable<ApiResponse<null>> {
     return this.http.delete<ApiResponse<null>>(`${this.API_URL}/rates/rate/${rateId}`);
+  }
+
+  updateMovieRate(filmId: number, rateId: number, grade: number): Observable<ApiResponse<null>> {
+    return this.http.put<ApiResponse<null>>(`${this.API_URL}/rates/rate/${rateId}`, {filmId, grade});
   }
 }

@@ -24,9 +24,19 @@
         <span>This movie has no comments available.</span>
     } @else {
         @for (item of comments(); track item) {
-            <div class="flex gap-8">
-                <span>{{ item.createdAt | date }}</span>
-                <span class="text-white">{{ item.comment }}</span>
+            <div class="flex gap-8 items-center">
+                <span class="font-bold comment-username">{{ item.user?.username }}</span>
+                <span class="comment-date">{{ item.createdAt | date }}</span>
+                <div class="w-full">
+                    <span class="text-white">{{ item.comment }}</span>
+                </div>
+                @if (auth.userIdentificator && item.user?.id === auth.userIdentificator) {
+                    <div class="flex justify-end items-center">
+                        <button mat-icon-button (click)="deleteComment(item.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                }
             </div>
         }
 

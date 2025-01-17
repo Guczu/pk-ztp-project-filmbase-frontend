@@ -27,6 +27,8 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CommentsComponent } from './components/comments/comments.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { CommentsComponent } from './components/comments/comments.component';
     SectionHeaderComponent,
     MovieDetailsComponent,
     CommentsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { CommentsComponent } from './components/comments/comments.component';
     MatMenuModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

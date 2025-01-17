@@ -23,9 +23,9 @@
                     <app-section-header>Rating</app-section-header>
                     <div class="flex justify-center items-center gap-4">
                         <mat-icon fontIcon="star_icon"></mat-icon>
-                        <span class="text-white">{{ overallRate }}</span>
+                        <span class="text-white">{{ overallRate }} </span>
+                        <span>(Reviews: {{ overallCount }})</span>
                     </div>
-                    <span>Reviews count: {{ overallCount }}</span>
                 </div>
             </div>
 
@@ -45,4 +45,8 @@
     </div>
 
     <app-comments [movieId]="movie.id"></app-comments>
+
+    @if (!movie) {
+        <app-loading-spinner [mode]="'FULL'"></app-loading-spinner>
+    }
 </section>

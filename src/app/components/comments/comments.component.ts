@@ -18,7 +18,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   comments = signal<Comment[]>([]);
   pagination = signal<Pagination>({
     number: 0,
-    size: 10,
+    size: 5,
     totalPages: 1,
     totalElements: 0,
   });
@@ -54,9 +54,16 @@ export class CommentsComponent implements OnInit, OnDestroy {
 
     this.subscription.add(this.api.addMovieComment(this.newCommentContent, this.movieId).subscribe({
       next: (comment) => {
-        this.comments.update(c => [...c, comment.data]);
         this.newCommentContent = '';
+        this.getComments();
       },
+      error: (err) => console.error(err),
+    }))
+  }
+
+  deleteComment(commentId: number) {
+    this.subscription.add(this.api.deleteComment(commentId).subscribe({
+      next: () => this.getComments(),
       error: (err) => console.error(err),
     }))
   }
